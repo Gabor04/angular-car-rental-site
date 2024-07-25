@@ -1,0 +1,24 @@
+<div class="container">
+    <h1  routerLink="/home">Car rental service</h1>
+    <div class="left">
+        <a href="https://github.com/Gabor04" target="_blank"><img src="\assets\github-mark-white.svg" alt="" style="width: 3rem; height: 3rem; margin-left: 1rem;"></a>
+    </div>
+    <div class="right">
+        <ng-container *ngIf="!isLoggedIn; else loggedInTemplate">
+            <button class="button register" routerLink="/register" (click)="goToRegister()" >Register</button>
+            <button class="button login" routerLink="/login" (click)="clearLoggedIn()">Login</button>
+        </ng-container>
+        <ng-template #loggedInTemplate>
+
+            <button mat-button [matMenuTriggerFor]="menu" style="background: none; border: none; float: right; margin-right: 1rem;"><img src="\assets\usericon.svg"></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item routerLink="/userprofile">Profile</button>
+                <button mat-menu-item>Rentals</button>
+                <button mat-menu-item>Option 3</button>
+                <button mat-menu-item routerLink="/login" (click)='clearLoggedIn()'>Logout</button>
+              </mat-menu>
+            
+        </ng-template>
+    </div>
+
+</div>

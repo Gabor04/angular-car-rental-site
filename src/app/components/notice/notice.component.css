@@ -1,0 +1,10 @@
+*{margin: 0;
+padding: 0;
+box-sizing: border-box;}
+
+.notice{
+    position: fixed;
+    bottom: 0px;
+    background-color: aqua;
+    height: 3rem;
+}

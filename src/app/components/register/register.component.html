@@ -1,0 +1,14 @@
+<div class="container">
+	<form [formGroup]="registerForm" (submit)="register()">
+		<label for="email">Please enter your email address</label><br>
+		<input type="email" placeholder="Email" name="email" id="email" formControlName="email"><br>
+
+		<label for="username">Please enter your username</label><br>
+		<input type="text" name="username" id="username" placeholder="Username" formControlName="userName"><br>
+
+		<label for="password">Please enter your password</label><br>
+		<input type="password" placeholder="Password" id="password" name="password" formControlName="password"><br>
+
+		<input type="submit" name="submit" id="" class="button" value="Submit">
+	</form>
+</div>
