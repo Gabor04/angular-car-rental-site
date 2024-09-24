@@ -1,19 +1,24 @@
 
 import { Car } from './../../../models/car.model';
-import { Component } from '@angular/core';
+import { User } from '../../../models/user.model';
+import { Component, ElementRef, QueryList, ViewChildren, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
+import internal from 'node:stream';
+import { NgOptimizedImage } from '@angular/common';
+import { provideImgixLoader } from '@angular/common';
 
 @Component({
   selector: 'app-cars',
   standalone: true,
-  imports: [CardModule, ButtonModule, CommonModule],
+  imports: [CardModule, ButtonModule, CommonModule, NgOptimizedImage],
+  providers: [provideImgixLoader('http://www.imgix.com/'),],
   templateUrl: './cars.component.html',
   styleUrl: './cars.component.css'
 })
-export class CarsComponent {
-
+export class CarsComponent implements AfterViewInit {
+ 
   cars: Car[] =[
 
     {
@@ -96,9 +101,39 @@ export class CarsComponent {
 
   ];
 
+  @ViewChildren('dynamicButton') dynamicButtons!: QueryList<ElementRef>;
+  
+  ngAfterViewInit(): void {
+    
+    this.dynamicButtons.forEach((buttonElement: ElementRef) => {
+      console.log(buttonElement.nativeElement);
+    });}
 
-  test(){
-    console.log('asd')
+  
+
+  rentCar(carId: any){
+
+    let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}')
+
+    if (!loggedInUser.rentedCars) {
+      loggedInUser.rentedCars = [];
+    }
+    if(!loggedInUser.rentedCars.includes(carId)){
+      loggedInUser.rentedCars.push(carId);
+      localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser)); 
+    }
+    else{
+      console.log('fasz');
+      carId = 0;
+    }
+
+       
+      
+      
+      
+    
+
+    
   }
-
 }
+

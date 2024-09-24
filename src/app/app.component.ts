@@ -1,3 +1,6 @@
+import { FirebaseApp } from './../../node_modules/@angular/fire/compat/firebase.app.d';
+import { initializeApp } from 'firebase/app';
+import { FirestoreModule } from '@angular/fire/firestore';
 import { MatIconModule } from '@angular/material/icon';
 import { Component } from '@angular/core';
 import { RouterOutlet} from '@angular/router';
@@ -12,6 +15,8 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
+import { FirebaseService } from './services/firebase.service';
+
 
 @Component({
   selector: 'app-root',
@@ -27,11 +32,14 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
     MatIconModule,
     RouterModule,
     ReactiveFormsModule,
-    UserprofileComponent
+    UserprofileComponent,
+   
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'carrent';
+
+  constructor(private firebaseService: FirebaseService){}
 }
